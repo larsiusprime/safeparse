@@ -1,0 +1,11 @@
+{
+ "name": "safeparse",
+ "url" : "https://github.com/larsiusprime/safeparse",
+ "license": "MIT",
+ "tags": ["xml","json","data","parsing"],
+ "description": "A collection of Haxe static extensions that safely read from XML and JSON, reducing boilerplate",
+ "version": "0.0.0",
+ "releasenote": "",
+ "contributors": ["larsiusprime"],
+ "dependencies": {}
+}
