@@ -20,7 +20,8 @@ if(data.has.name)
 {
   name = data.att.name.toLowerCase();
 }
-
+```
+```haxe
 var name = (data.has.name ? data.att.name : "").toLowerCase();
 ```
 
