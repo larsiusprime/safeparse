@@ -38,8 +38,8 @@ using safeparse.XMLHelper;
 
 And then you can do stuff like this:
 ```haxe
-var name = data.getStr("name", "", LOWER);
-var number = data.getFloat("number", 0);
+var name = data.getStr("name", "", LOWER);   //returns the value of "name", or "" if not found, forces lower case
+var number = data.getFloat("number", 0);     //returns the value of "number" or 0 if not found
 ```
 
 If you want to be even simpler you can rely on the defaults:
