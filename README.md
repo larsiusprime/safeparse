@@ -36,7 +36,7 @@ Now you just add this ```using``` declaration:
 using safeparse.XMLHelper;
 ```
 
-And then you can do this:
+And then you can do stuff like this:
 ```haxe
 var name = data.getStr("name", "", LOWER);
 var number = data.getFloat("number", 0);
