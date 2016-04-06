@@ -28,7 +28,7 @@ var name = (data.exists("name") ? data.exists("name") : "").toLowerCase();
 It's even more annoying if you want to parse to something other than a string:
 ```haxe
 var number = Std.parseFloat(data.exists("number")); //could be non-existent and error,
-                                              //or parsing something like "hamburger" and is now NaN!
+                                                    //or parsing something like "hamburger" and is now NaN!
 ```
 
 Now you just add this ```using``` declaration:
