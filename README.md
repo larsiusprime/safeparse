@@ -5,29 +5,29 @@ A collection of Haxe static extensions that safely read from XML and JSON, reduc
 
 You have some xml:
 ```haxe
-var data:Fast = getSomeXMLSomehow();
+var data:Xml = getSomeXMLSomehow();
 ```
 
 You do this a lot:
 ```haxe
-var name = data.att.name.toLowerCase();  //could be non-existent and throw a parse error!
+var name = data.get("name").toLowerCase();  //could be non-existent and throw a parse error!
 ```
 
 ...but typing either of these all the time is a pain:
 ```haxe
 var name = "";
-if(data.has.name)
+if(data.exists("name"))
 {
-  name = data.att.name.toLowerCase();
+  name = data.get("name").toLowerCase();
 }
 ```
 ```haxe
-var name = (data.has.name ? data.att.name : "").toLowerCase();
+var name = (data.exists("name") ? data.exists("name") : "").toLowerCase();
 ```
 
 It's even more annoying if you want to parse to something other than a string:
 ```haxe
-var number = Std.parseFloat(data.att.number); //could be non-existent and error,
+var number = Std.parseFloat(data.exists("number")); //could be non-existent and error,
                                               //or parsing something like "hamburger" and is now NaN!
 ```
 
