@@ -5,7 +5,7 @@ A collection of Haxe static extensions that safely read from XML and JSON, reduc
 
 You have some xml:
 ```haxe
-var data:Xml = getSomeXMLSomehow();
+var data:Fast = getSomeXMLSomehow();
 ```
 
 You do this a lot:
