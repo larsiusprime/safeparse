@@ -22,6 +22,7 @@
  */
 
 package safeparse;
+import safeparse.XMLHelper.TextCase;
 
 class XMLHelper
 {
@@ -30,22 +31,21 @@ class XMLHelper
 	 * Safety wrapper for reading a string attribute from xml
 	 * @param	Data the Xml object
 	 * @param	Att the name of the attribute
-	 * @param	ForceLowerCase whether to force it to be lower case
 	 * @param	Default what to return if the value doesn't exist
+	 * @param	ForceLowerCase whether to force it to be lower case
 	 * @return
 	 */
 	
-	public static function getStr(Data:Xml, Att:String, ForceLowerCase:Bool = false, Default:String = ""):String
+	public static function getStr(Data:Xml, Att:String, Default:String = "", ForceCase:TextCase = NONE):String
 	{
-		if (data.get(att) != null)
+		if (Data.get(att) != null)
 		{
-			if (ForceLowerCase)
+			var str:String = Data.get(Att);
+			return switch(ForceCase)
 			{
-				return data.get(Att).toLowerCase();
-			}
-			else
-			{
-				return data.get(Att);
+				case UPPER: str.toUpperCase();
+				case LOWER: str.toLowerCase();
+				default: str;
 			}
 		}
 		return Default;
@@ -59,11 +59,11 @@ class XMLHelper
 	 * @return
 	 */
 	
-	public static function getFloat(data:Xml, Att:String, Default:Float = 0):Float
+	public static function getFloat(Data:Xml, Att:String, Default:Float = 0):Float
 	{
-		if (data.get(Att) != null)
+		if (Data.get(Att) != null)
 		{
-			return Std.parseFloat(data.get(Att));
+			return Std.parseFloat(Data.get(Att));
 		}
 		return Default;
 	}
@@ -78,33 +78,40 @@ class XMLHelper
 	
 	public static function getInt(Data:Xml, Att:String, Default:Int = 0):Int
 	{
-		if (data.get(att) != null)
+		if (Data.get(att) != null)
 		{
-			return Std.parseInt(data.get(att));
+			return Std.parseInt(Data.get(att));
 		}
-		return default_;
+		return Default;
 	}
 	
 	/**
 	 * Safety wrapper for reading a bool attribute from xml
-	 * @param	data the Xml object
-	 * @param	att the name of the attribute
-	 * @param   what to return if the value doesn't exist
+	 * @param	Data the Xml object
+	 * @param	Att the name of the attribute
+	 * @param   Default what to return if the value doesn't exist
 	 * @return  true if att is "true" (case-insensitive) or "1", otherwise false
 	 */
 	
 	public static function getBool(Data:Xml, Att:String, Default:Bool = false):Bool
 	{
-		if (data.get(att) != null)
+		if (Data.get(att) != null)
 		{
-			var str:String = data.get(att);
+			var str:String = Data.get(att);
 			str = str.toLowerCase();
-			if (str == "true" || str == "1") {		//only "true" or "1" return TRUE
+			if (str == "true" || str == "1")		//only "true" or "1" return TRUE
+			{
 				return true;
 			}
 			return false;							//any other value returns FALSE
 		}
-		return default_;							//if the attribute does not EXIST, return the DEFAULT VALUE
+		return Default;								//if the attribute does not EXIST, return the DEFAULT VALUE
 	}
 	
+	enum TextCase
+	{
+		UPPER;
+		LOWER;
+		NONE;
+	}
 }
