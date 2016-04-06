@@ -14,7 +14,7 @@ var name = data.att.name.toLowerCase();  //could be non-existent and throw a par
 ```
 
 ...but typing either of these all the time is a pain:
-```
+```haxe
 var name = "";
 if(data.has.name)
 {
